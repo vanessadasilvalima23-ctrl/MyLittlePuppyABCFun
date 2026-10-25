@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Little Puppy: ABC Fun</title>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #56CCF2, #2F80ED);
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 { font-size: 24px; margin-bottom: 5px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        p { font-size: 16px; margin-bottom: 20px; }
+        .card {
+            background: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            width: 80%;
+            max-width: 320px;
+        }
+        button {
+            background: #FF6B6B;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        button:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+
+    <h1>🐾 My Little Puppy: ABC Fun</h1>
+    <p>O mundo 3D interativo do alfabeto em inglês!</p>
+
+    <div class="card">
+        <h2 id="letra-display" style="font-size: 50px; color: #2F80ED; margin: 10px 0;">A</h2>
+        <h3 id="palavra-display" style="margin: 5px 0; color: #333;">Apple 🍎</h3>
+        <button onclick="proximaLetra()">Toque para Ouvir!</button>
+    </div>
+
+    <script>
+        const alfabeto = [
+            { letra: "A", palavra: "Apple 🍎" },
+            { letra: "B", palavra: "Bone 🦴" },
+            { letra: "C", palavra: "Cat 🐱" },
+            { letra: "D", palavra: "Dog 🐶" }
+        ];
+        let index = 0;
+
+        function proximaLetra() {
+            index = (index + 1) % alfabeto.length;
+            document.getElementById("letra-display").innerText = alfabeto[index].letra;
+            document.getElementById("palavra-display").innerText = alfabeto[index].palavra;
+            
+            // Simula fala interativa em inglês nativa do celular
+            const utterance = new SpeechSynthesisUtterance(alfabeto[index].letra + ". " + alfabeto[index].palavra);
+            utterance.lang = 'en-US';
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
